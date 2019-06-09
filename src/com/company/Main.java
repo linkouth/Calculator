@@ -4,17 +4,26 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int num1 = getInt();
-        int num2 = getInt();
-        char operation = getOperation();
-        int result = calc(num1,num2,operation);
-        System.out.println("Результат операции: "+result);
+        char flag = 'y';
+        while (flag == 'y') {
+            int num1 = getInt();
+            int num2 = getInt();
+            char operation = getOperation();
+            int result = calc(num1, num2, operation);
+            System.out.println("Результат операции: " + result);
+            System.out.println("Продолжить?(y/n)");
+            if (scanner.hasNext()) {
+                flag = scanner.next().toLowerCase().charAt(0);
+            } else {
+                flag = 'n';
+            }
+        }
     }
 
-    public static int getInt(){
+    private static int getInt(){
         System.out.println("Введите число:");
         int num;
         if(scanner.hasNextInt()){
@@ -27,7 +36,7 @@ public class Main {
         return num;
     }
 
-    public static char getOperation(){
+    private static char getOperation(){
         System.out.println("Введите операцию:");
         char operation;
         if(scanner.hasNext()){
@@ -40,7 +49,7 @@ public class Main {
         return operation;
     }
 
-    public static int calc(int num1, int num2, char operation){
+    private static int calc(int num1, int num2, char operation){
         int result;
         switch (operation){
             case '+':
